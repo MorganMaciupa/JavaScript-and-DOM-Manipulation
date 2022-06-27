@@ -33,15 +33,30 @@ function runClick() {
     // Prevent the page from refreshing
     d3.event.preventDefault();
     
-    // Select the input element and get the raw HTML node
-    var inputElement = d3.select("#datetime");
+    // Select the input elemensa and get the raw HTML node
+    var inputDate = d3.select("#datetime");
+    var inputCity = d3.select("#city");
+    var inputState = d3.select("#state");
+    var inputCountry = d3.select("#country");
+    var inputShape = d3.select("#shape");
   
-    // Get the value property of the input element
-    var inputValue = inputElement.property("value");
+    // Get the value property of the input elements
+    var dateValue = inputDate.property("value");
+    var cityValue = inputCity.property("value").toLowerCase();
+    var stateValue = inputState.property("value").toLowerCase();
+    var countryValue = inputCountry.property("value").toLowerCase();
+    var shapeValue = inputShape.property("value").toLowerCase();
   
-    console.log(inputValue);
+    console.log(inputDate);
+    console.log(inputCity);
+    console.log(inputState);
+    console.log(inputCountry);
+    console.log(inputShape);
   
-    var filteredData = tableData.filter(tableData => tableData.datetime === inputValue);
+    var filteredData = tableData.filter(tableData => 
+      tableData.datetime === dateValue && tableData.city === cityValue &&
+      tableData.state === stateValue && tableData.country === countryValue 
+      && tableData.shape === shapeValue);
 
     console.log(filteredData)
     
