@@ -21,7 +21,7 @@ data.forEach(function(UFO_sighting) {
 var button = d3.select("#filter-btn")
 
 // Select the form
-var form = d3.select(".form-group")
+var form = d3.select("#form")
 
 // Create event handlers
 button.on("click", runClick);
@@ -52,13 +52,30 @@ function runClick() {
     console.log(inputState);
     console.log(inputCountry);
     console.log(inputShape);
-  
-    var filteredData = tableData.filter(tableData => 
-      tableData.datetime === dateValue && tableData.city === cityValue &&
-      tableData.state === stateValue && tableData.country === countryValue 
-      && tableData.shape === shapeValue);
 
-    console.log(filteredData)
+    filteredData = data;
+
+    if (dateValue) {
+      filteredData = filteredData.filter(filter => filter.datetime === dateValue);
+    };
+
+    if (cityValue) {
+      filteredData = filteredData.filter(filter => filter.city === cityValue);
+    };
+
+    if (stateValue) {
+      filteredData = filteredData.filter(filter => filter.state === stateValue);
+    };
+
+    if (countryValue) {
+      filteredData = filteredData.filter(filter => filter.country === countryValue);
+    };
+
+    if (shapeValue) {
+      filteredData = filteredData.filter(filter => filter.shape === shapeValue);
+    };
+
+    console.log(filteredData);
     
     // remove data from the table
     tbody.html("");
